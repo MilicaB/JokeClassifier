@@ -1,11 +1,11 @@
 package com.jokes.classifier.common;
 
 import java.util.HashMap;
-import java.util.List;
+import java.util.LinkedHashSet;
 import java.util.Map;
 
 public class ClassifiedJoke {
-	private static String DELIMITERS = "[\\s,?!:;.-+]+";
+	private static String DELIMITERS = "[\\s,?!:;.-]+";
 	private Map<String, Integer> wordPartition;
 	private int rating;
 
@@ -14,7 +14,7 @@ public class ClassifiedJoke {
 	private int RATING_INFLATION = 10;
 
 	public ClassifiedJoke(Joke joke, Vocabulary vocabulary) {
-		List<String> words = vocabulary.getAlphabet();
+		LinkedHashSet<String> words = vocabulary.getAlphabet();
 		wordPartition = new HashMap<String, Integer>();
 		String[] jokeWords = joke.getJokeText().split(DELIMITERS);
 		for (String jokeWord : jokeWords) {

@@ -1,13 +1,13 @@
 package com.jokes.classifier.common;
 
-import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 import stemming.Stemmer;
 
 public class Vocabulary {
 	private static String DELIMITERS = "[\\s,?!:;.]+";
-	private List<String> alphabet;
+	private final LinkedHashSet<String> alphabet;
 
 	private final boolean withStemming;
 	private Stemmer stemmer = new Stemmer();
@@ -17,12 +17,12 @@ public class Vocabulary {
 		if (useStemming) {
 			stemmer.loadAllRules();
 		}
-		//TODO(yasen): Maybe change this to a HashMap or something. We call contains on it.
-		alphabet = new ArrayList<>();
+
+		alphabet = new LinkedHashSet<String>();
 		createAlphabet(jokes);
 	}
 
-	public List<String> getAlphabet() {
+	public LinkedHashSet<String> getAlphabet() {
 		return alphabet;
 	}
 
