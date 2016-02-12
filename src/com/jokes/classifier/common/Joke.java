@@ -1,7 +1,7 @@
 package com.jokes.classifier.common;
 
 /**
- * Class representing a single joke
+ * Class representing a single joke.
  */
 public class Joke {
 	private String jokeText;
@@ -30,5 +30,10 @@ public class Joke {
 
 	public void setThumbsDown(int thumbsDown) {
 		this.thumbsDown = thumbsDown;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("+%d -%d:\n%s\n", thumbsUp, thumbsDown, jokeText);
 	}
 }
