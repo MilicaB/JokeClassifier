@@ -5,9 +5,13 @@ import java.util.List;
 import java.util.Map;
 
 public class ClassifiedJoke {
-	private static String DELIMITERS = "[\\s,?!:;.]+";
+	private static String DELIMITERS = "[\\s,?!:;.-+]+";
 	private Map<String, Integer> wordPartition;
 	private int rating;
+
+	// As the data is from an online forum, around half of the jokes have
+	// rating thumbs_up - thumbs_down > 27. Take this into account as inflation.
+	private int RATING_INFLATION = 27;
 
 	public ClassifiedJoke(Joke joke, Vocabulary vocabulary) {
 		List<String> words = vocabulary.getAlphabet();
@@ -22,7 +26,7 @@ public class ClassifiedJoke {
 				wordPartition.put(jokeWord, numberOccurences + 1);
 			}
 		}
-		rating = joke.getThumbsUp() - joke.getThumbsDown();
+		rating = joke.getThumbsUp() - joke.getThumbsDown() - RATING_INFLATION;
 	}
 
 	public Map<String, Integer> getWordPartition() {
