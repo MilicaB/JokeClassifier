@@ -62,7 +62,7 @@ public class JokeReader {
 	}
 
 	/**
-	 * @returns The size of the database.
+	 * @return The size of the database.
 	 */
 	public static int getDatabaseSize() {
 		Connection connection = null;

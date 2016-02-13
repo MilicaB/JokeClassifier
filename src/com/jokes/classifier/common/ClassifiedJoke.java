@@ -19,14 +19,14 @@ public class ClassifiedJoke {
 
 	/**
 	 *  As the data is from an online forum, around half of the jokes have
-	 *  rating thumbs_up - thumbs_down > 27. Take this into account as inflation.
+	 *  rating thumbs_up - thumbs_down &gt; 27. Take this into account as inflation.
 	 */
 	public static final int RATING_INFLATION = 27;
 
 	/**
 	 * Processes a joke with known rating. In addition, it extracts all its words along with
 	 * their frequencies in the wordPartition Map. It may use stemming and it may ingore the
-	 * words with length < 3 depending on the booleans ignoreSmall and withStemming from the
+	 * words with length &lt; 3 depending on the booleans ignoreSmall and withStemming from the
 	 * vocabulary.
 	 *
 	 * @param joke The current classified joke.

@@ -130,6 +130,8 @@ public class BaesyanUtil {
 
 	/**
 	 * Simple helper that checks if a joke is good.
+	 * @param jokeText The text of the current (unclassified) joke.
+	 * @return isGoodJoke Whether the joke is good.
 	 */
 	public boolean isTheJokeGood(String jokeText) {
 		boolean isGoodJoke = true;
