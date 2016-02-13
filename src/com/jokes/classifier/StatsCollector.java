@@ -21,8 +21,8 @@ public class StatsCollector {
 	}
 
 	public void printAllStats() {
-		System.out.println(accuracies);
-		System.out.println(goodAsBad);
-		System.out.println(badAsGood);
+		System.out.println("accuracy    = " + accuracies);
+		System.out.println("good_as_bad = " + goodAsBad);
+		System.out.println("bad_as_good = " + badAsGood);
 	}
 }
