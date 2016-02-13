@@ -12,10 +12,13 @@ public class Classifier {
 	private BaesyanUtil baesyanUtil;
 	private boolean withStemming = true;
 	private boolean ignoreSmallWords = true;
+	private StatsCollector stats;
 
-	public Classifier(List<Joke> jokes, boolean useStemming, boolean ignoreSmall) {
+	public Classifier(List<Joke> jokes, boolean useStemming, boolean ignoreSmall,
+			StatsCollector collector) {
 		withStemming = useStemming;
 		ignoreSmallWords = ignoreSmall;
+		stats = collector;
 
 		Vocabulary vocabulary = new Vocabulary(jokes, withStemming, ignoreSmallWords);
 		List<ClassifiedJoke> classifiedJokes = new LinkedList<ClassifiedJoke>();
@@ -57,8 +60,11 @@ public class Classifier {
 		}
 		double accuracy = correct * 1.0 / total;
 		System.out.println("Accuracy: " + accuracy);
+		stats.addAccuracyEntry(accuracy);
 		System.out.println("Total correct: " + correct);
 		System.out.println("Bad jokes found as good: " + badJokeAsGood);
+		stats.addBadAsGoodEntry(badJokeAsGood * 1.0 / total);
 		System.out.println("Good jokes found as bad: " + goodJokeAsbad);
+		stats.addGoodAsBadEntry(goodJokeAsbad * 1.0 / total);
 	}
 }
