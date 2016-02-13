@@ -8,6 +8,11 @@ import com.jokes.classifier.common.ClassifiedJoke;
 import com.jokes.classifier.common.Joke;
 import com.jokes.classifier.common.Vocabulary;
 
+/**
+ * Classifies each joke from a set of jokes.
+ *
+ * @author Milica Borisova
+ */
 public class Classifier {
 	private BaesyanUtil baesyanUtil;
 	private boolean withStemming = true;
@@ -20,6 +25,8 @@ public class Classifier {
 		ignoreSmallWords = ignoreSmall;
 		stats = collector;
 
+		// Extract all words from the current set of jokes and
+		// put them in the vocabulary.
 		Vocabulary vocabulary = new Vocabulary(jokes, withStemming, ignoreSmallWords);
 		List<ClassifiedJoke> classifiedJokes = new LinkedList<ClassifiedJoke>();
 		for (Joke joke : jokes) {

@@ -4,12 +4,20 @@ import java.util.Locale;
 
 /**
  * Class representing a single joke.
+ *
+ * @author Vasil Todorov
  */
 public class Joke {
 	private String jokeText;
 	private int thumbsUp;
 	private int thumbsDown;
 
+	/**
+	 * This is something specific for the online forum from which we got the data.
+	 * Some posts start with this prefix to indicate that it was originally
+	 * posted by someone else. We remove this prefix so that it doesn't affect the
+	 * accuracy of the classifier.
+	 */
 	private static final String REPEATED_TEXT_PREFIX = "първоначално публикувано от ";
 
 	public String getJokeText() {

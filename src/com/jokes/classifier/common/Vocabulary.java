@@ -5,6 +5,12 @@ import java.util.List;
 
 import stemming.Stemmer;
 
+/**
+ * Represents a vocabulary of all the words
+ * contained in a joke from the training set.
+ *
+ * @author Milica Borisova
+ */
 public class Vocabulary {
 	private final LinkedHashSet<String> alphabet;
 

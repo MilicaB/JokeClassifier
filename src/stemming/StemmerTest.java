@@ -4,8 +4,12 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+/**
+ * Tests for the {@link Stemmer} class.
+ *
+ * @author Vasil Todorov
+ */
 public class StemmerTest {
-
 	@Test
 	public void test() {
 		String text = "ученик учениците ученика учените";

@@ -4,6 +4,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Implements all the calculations for the naive
+ * Bayes classifier.
+ *
+ * @author Milica Borisova
+ * @author Yasen Trifonov
+ */
 public class BaesyanUtil {
 	private final double defaultPositiveWordProbability;
 	private final double defaultNegativeWordProbability;
@@ -34,6 +41,12 @@ public class BaesyanUtil {
 		getProbabilities(jokes);
 	}
 
+	/**
+	 * Calculates the positive/negative probabilities
+	 * for every word in the training set.
+	 *
+	 * @param jokes The training set of jokes.
+	 */
 	private void processWordProbabilities(List<ClassifiedJoke> jokes) {
 		countPositiveAndNegativeWords(jokes);
 		calculateWordProbabilities();
@@ -92,6 +105,11 @@ public class BaesyanUtil {
 		}
 	}
 	
+	/**
+	 * Calculates the probabilities P(joke is good) and P(joke is bad).
+	 *
+	 * @param jokes The training set of jokes.
+	 */
 	private void getProbabilities(List<ClassifiedJoke> jokes) {
 		int jokesCount = jokes.size();
 		int goodJokes = 0;
@@ -110,6 +128,9 @@ public class BaesyanUtil {
 		//System.out.println("- probability: " + negativeProbability);
 	}
 
+	/**
+	 * Simple helper that checks if a joke is good.
+	 */
 	public boolean isTheJokeGood(String jokeText) {
 		boolean isGoodJoke = true;
 		if (predictJokeRating(jokeText) < 0) {

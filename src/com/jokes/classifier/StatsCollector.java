@@ -3,6 +3,11 @@ package com.jokes.classifier;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Aggregates statistics for the different classifiers.
+ *
+ * @author Yasen Trifonov
+ */
 public class StatsCollector {
 	private static List<Double> accuracies = new ArrayList<>();
 	private static List<Double> goodAsBad = new ArrayList<>();

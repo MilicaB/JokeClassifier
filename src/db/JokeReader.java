@@ -14,7 +14,19 @@ import java.util.List;
 
 import com.jokes.classifier.common.Joke;
 
+/**
+ * Establishes a connection with the jokes database and
+ * executes queries in it.
+ *
+ * @author Yasen Trifonov
+ */
 public class JokeReader {
+	/**
+	 * Establishes a connection with the database and fetches jokes.
+	 * @param idFrom The id of the first joke entity to fetch.
+	 * @param idTo The id of the last (inclusive) entity to fetch.
+	 * @return jokes An array of jokes.
+	 */
 	public static List<Joke> getJokes(int idFrom, int idTo) {
 		List<Joke> jokes = new LinkedList<Joke>();
 		Connection connection = null;
@@ -49,6 +61,9 @@ public class JokeReader {
 		return jokes;
 	}
 
+	/**
+	 * @returns The size of the database.
+	 */
 	public static int getDatabaseSize() {
 		Connection connection = null;
 		Statement statement = null;

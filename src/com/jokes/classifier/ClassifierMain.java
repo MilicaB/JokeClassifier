@@ -7,10 +7,21 @@ import com.jokes.classifier.common.Joke;
 
 import db.JokeReader;
 
+/**
+ * Main method - entry point for the application.
+ *
+ * @author Yasen Trifonov
+ */
 public class ClassifierMain {
 	private static int TOTAL_SIZE = 0;
 	public static int iter = 0;
 
+	/**
+	 * Iterates over different values of the test sets sizes and
+	 * calls the tryCurrentSet method for each. This method will
+	 * fetch the sets from the database and attempt to classify
+	 * them.
+	 */
 	public static void main(String args[]) {
 		TOTAL_SIZE = JokeReader.getDatabaseSize();
 		System.out.println(TOTAL_SIZE);
@@ -24,6 +35,20 @@ public class ClassifierMain {
 		stats.printAllStats();
 	}
 
+	/**
+	 * Fetches two test sets of jokes and puts all other jokes from the database inside
+	 * a training set. Then it trains a Naive Bayesian classifier on the training set
+	 * and attempts to classify as good or bad each joke of the two test sets of jokes.
+	 *
+	 * It runs a total of four different classifiers, based on the values of the following
+	 * two booleans:
+	 *   1) withStemming? - Should the classifier apply stemming on each word;
+	 *   2) ignoreShortWords? - Should the classifier skip words with small length;
+	 *
+	 * @param firstTestSetSize Size of first testing set.
+	 * @param secondTestSetSize Size of second testing set.
+	 * @param stats Object, which aggregates the various stats.
+	 */
 	public static void tryCurrentSet(int firstTestSetSize, int secondTestSetSize,
 			StatsCollector stats) {
 		List<Joke> firstTestSet = JokeReader.getJokes(1, firstTestSetSize);
