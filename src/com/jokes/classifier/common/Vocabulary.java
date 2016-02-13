@@ -6,7 +6,6 @@ import java.util.List;
 import stemming.Stemmer;
 
 public class Vocabulary {
-	private static String DELIMITERS = "[\\s,?!:;.]+";
 	private final LinkedHashSet<String> alphabet;
 
 	private final boolean withStemming;
@@ -33,7 +32,7 @@ public class Vocabulary {
 	}
 
 	private void addJokeWords(Joke joke) {
-		String[] jokeWords = joke.getJokeText().split(DELIMITERS);
+		String[] jokeWords = joke.getJokeText().split(ClassifiedJoke.DELIMITERS);
 		for (String jokeWord : jokeWords) {
 			if (jokeWord.length() < 3) {
 				continue;
@@ -43,8 +42,10 @@ public class Vocabulary {
 					jokeWord = stemmer.stem(jokeWord);
 				}
 				alphabet.add(jokeWord);
+				System.out.println(jokeWord);
 			}
 		}
+		System.out.println("Total vocabulary size: " + alphabet.size());
 	}
 
 	public String stemWord(String word) {

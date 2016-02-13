@@ -18,6 +18,7 @@ public class Classifier {
 		for (Joke joke : jokes) {
 			classifiedJokes.add(new ClassifiedJoke(joke, vocabulary));
 		}
+		System.out.println(String.format("Learning a set of %d jokes.", jokes.size()));
 		baesyanUtil = new BaesyanUtil(classifiedJokes, vocabulary);
 	}
 
@@ -31,6 +32,8 @@ public class Classifier {
 
 	public void classifySet(List<Joke> testJokes) {
 		int correct = 0;
+		int goodJokeAsbad = 0;
+		int badJokeAsGood = 0;
 		int total = testJokes.size();
 		System.out.println(String.format("Classifying a set of %d jokes.", total));
 
@@ -40,9 +43,18 @@ public class Classifier {
 			boolean predictedRating = isJokeGood(joke.getJokeText());
 			if (realRating == predictedRating) {
 				correct ++;
+			} else {
+				if (realRating) {
+					goodJokeAsbad ++;
+				} else {
+					badJokeAsGood ++;
+				}
 			}
 		}
 		double accuracy = correct * 1.0 / total;
 		System.out.println("Accuracy: " + accuracy);
+		System.out.println("Total correct: " + correct);
+		System.out.println("Bad jokes found as good: " + badJokeAsGood);
+		System.out.println("Good jokes found as bad: " + goodJokeAsbad);
 	}
 }
