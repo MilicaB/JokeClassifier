@@ -1,10 +1,10 @@
 package com.jokes.classifier.common;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class BaesyanUtil {
-	private static String DELIMITERS = "[\\s,?!:;.]+";
 	private static double DEFAULT_PROBABILITY = 0.001;
 
 	private final Vocabulary vocabulary;
@@ -19,6 +19,11 @@ public class BaesyanUtil {
 
 	public BaesyanUtil(List<ClassifiedJoke> jokes, Vocabulary vocab) {
 		vocabulary = vocab;
+		wordsProbabilityPos = new HashMap<>();
+		wordsProbabilityNeg = new HashMap<>();
+		wordsCountNeg = new HashMap<>();
+		wordsCountPos = new HashMap<>();
+
 		processWordProbabilities(jokes);
 		getProbabilities(jokes);
 	}
@@ -69,9 +74,9 @@ public class BaesyanUtil {
 		int vocabularyCount = vocabulary.getAlphabet().size();
 
 		for (String word : vocabulary.getAlphabet()) {
-			double wordProbPos = (wordsCountPos.get(word) + 1) * 1.0
+			double wordProbPos = (wordsCountPos.getOrDefault(word, 0) + 1) * 1.0
 					/ (vocabularyCount + totalPositiveWords);
-			double wordProbNeg = (wordsCountNeg.get(word) + 1) * 1.0
+			double wordProbNeg = (wordsCountNeg.getOrDefault(word, 0) + 1) * 1.0
 					/ (vocabularyCount + totalNegativeWords);
 			wordsProbabilityPos.put(word, wordProbPos);
 			wordsProbabilityNeg.put(word, wordProbNeg);
@@ -103,7 +108,7 @@ public class BaesyanUtil {
 
 	// TODO(yasen): Use logarithm addition istead of simple multiplication (loses precision).
 	public double predictJokeRating(String jokeText) {
-		String[] jokeWords = jokeText.split(DELIMITERS);
+		String[] jokeWords = jokeText.split(ClassifiedJoke.DELIMITERS);
 		double positiveJokeProbability = positiveProbability;
 		double negativeJokeProbability = negativeProbability;
 		for (String word : jokeWords) {

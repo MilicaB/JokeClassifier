@@ -5,7 +5,7 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 
 public class ClassifiedJoke {
-	private static String DELIMITERS = "[\\s,?!:;.-]+";
+	public static String DELIMITERS = "[\\s,?!:;.-_()]+";
 	private Map<String, Integer> wordPartition;
 	private int rating;
 
