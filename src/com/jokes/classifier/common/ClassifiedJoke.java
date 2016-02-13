@@ -18,7 +18,7 @@ public class ClassifiedJoke {
 		wordPartition = new HashMap<String, Integer>();
 		String[] jokeWords = joke.getJokeText().split(DELIMITERS);
 		for (String jokeWord : jokeWords) {
-			if (jokeWord.length() < 3) {
+			if (vocabulary.ignoreSmall() && jokeWord.length() < 3) {
 				continue;
 			}
 			if (vocabulary.withStemming()) {

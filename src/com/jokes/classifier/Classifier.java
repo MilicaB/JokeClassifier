@@ -11,9 +11,10 @@ import com.jokes.classifier.common.Vocabulary;
 public class Classifier {
 	private BaesyanUtil baesyanUtil;
 	private final static boolean WITH_STEMMING = true;
+	private final static boolean IGNORE_SMALL_WORDS = true;
 
 	public Classifier(List<Joke> jokes) {
-		Vocabulary vocabulary = new Vocabulary(jokes, WITH_STEMMING);
+		Vocabulary vocabulary = new Vocabulary(jokes, WITH_STEMMING, IGNORE_SMALL_WORDS);
 		List<ClassifiedJoke> classifiedJokes = new LinkedList<ClassifiedJoke>();
 		for (Joke joke : jokes) {
 			classifiedJokes.add(new ClassifiedJoke(joke, vocabulary));

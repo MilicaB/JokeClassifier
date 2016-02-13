@@ -132,7 +132,7 @@ public class BaesyanUtil {
 		double positiveJokeProbability = Math.log(positiveProbability);
 		double negativeJokeProbability = Math.log(negativeProbability);
 		for (String word : jokeWords) {
-			if (word.length() < 3) {
+			if (vocabulary.ignoreSmall() && word.length() < 3) {
 				continue;
 			}
 			if (vocabulary.withStemming()) {

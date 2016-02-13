@@ -9,10 +9,12 @@ public class Vocabulary {
 	private final LinkedHashSet<String> alphabet;
 
 	private final boolean withStemming;
+	private final boolean ignoreSmallWords;
 	private Stemmer stemmer = new Stemmer();
 
-	public Vocabulary(List<Joke> jokes, boolean useStemming) {
+	public Vocabulary(List<Joke> jokes, boolean useStemming, boolean shouldIgnoreSmall) {
 		withStemming = useStemming;
+		ignoreSmallWords = shouldIgnoreSmall;
 		if (useStemming) {
 			stemmer.loadAllRules();
 		}
@@ -34,7 +36,7 @@ public class Vocabulary {
 	private void addJokeWords(Joke joke) {
 		String[] jokeWords = joke.getJokeText().split(ClassifiedJoke.DELIMITERS);
 		for (String jokeWord : jokeWords) {
-			if (jokeWord.length() < 3) {
+			if (ignoreSmallWords && jokeWord.length() < 3) {
 				continue;
 			}
             if (!alphabet.contains(jokeWord)) {
@@ -50,6 +52,10 @@ public class Vocabulary {
 
 	public String stemWord(String word) {
 		return stemmer.stem(word);
+	}
+
+	public boolean ignoreSmall() {
+		return ignoreSmallWords;
 	}
 
 	public boolean withStemming() {
