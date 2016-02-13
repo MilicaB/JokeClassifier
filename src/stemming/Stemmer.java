@@ -51,7 +51,7 @@ public class Stemmer {
             }
         }
         in.close();
-        System.out.println(String.format("Successfully loaded %d rules.", stemmingRules.size()));
+        //System.out.println(String.format("Successfully loaded %d rules.", stemmingRules.size()));
     }
 
     public String stem(String word) {

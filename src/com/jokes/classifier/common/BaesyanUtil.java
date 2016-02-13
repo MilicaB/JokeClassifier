@@ -106,8 +106,8 @@ public class BaesyanUtil {
 		positiveProbability = goodJokes * 1.0 / jokesCount;
 		negativeProbability = badJokes * 1.0 / jokesCount;
 
-		System.out.println("+ probability: " + positiveProbability);
-		System.out.println("- probability: " + negativeProbability);
+		//System.out.println("+ probability: " + positiveProbability);
+		//System.out.println("- probability: " + negativeProbability);
 	}
 
 	public boolean isTheJokeGood(String jokeText) {

@@ -10,11 +10,14 @@ import com.jokes.classifier.common.Vocabulary;
 
 public class Classifier {
 	private BaesyanUtil baesyanUtil;
-	private final static boolean WITH_STEMMING = true;
-	private final static boolean IGNORE_SMALL_WORDS = true;
+	private boolean withStemming = true;
+	private boolean ignoreSmallWords = true;
 
-	public Classifier(List<Joke> jokes) {
-		Vocabulary vocabulary = new Vocabulary(jokes, WITH_STEMMING, IGNORE_SMALL_WORDS);
+	public Classifier(List<Joke> jokes, boolean useStemming, boolean ignoreSmall) {
+		withStemming = useStemming;
+		ignoreSmallWords = ignoreSmall;
+
+		Vocabulary vocabulary = new Vocabulary(jokes, withStemming, ignoreSmallWords);
 		List<ClassifiedJoke> classifiedJokes = new LinkedList<ClassifiedJoke>();
 		for (Joke joke : jokes) {
 			classifiedJokes.add(new ClassifiedJoke(joke, vocabulary));
@@ -36,7 +39,7 @@ public class Classifier {
 		int goodJokeAsbad = 0;
 		int badJokeAsGood = 0;
 		int total = testJokes.size();
-		System.out.println(String.format("Classifying a set of %d jokes.", total));
+		System.out.println(String.format("%d %b %b", total, withStemming, ignoreSmallWords));
 
 		for (Joke joke : testJokes) {
 			boolean realRating = (joke.getThumbsUp() - joke.getThumbsDown()

@@ -44,10 +44,10 @@ public class Vocabulary {
 					jokeWord = stemmer.stem(jokeWord);
 				}
 				alphabet.add(jokeWord);
-				System.out.println(jokeWord);
+				//System.out.println(jokeWord);
 			}
 		}
-		System.out.println("Total vocabulary size: " + alphabet.size());
+		//System.out.println("Total vocabulary size: " + alphabet.size());
 	}
 
 	public String stemWord(String word) {
