@@ -124,7 +124,7 @@ public class BaesyanUtil {
 			if (wordsProbabilityNeg.containsKey(word)) {
 				negativeJokeProbability *= wordsProbabilityNeg.get(word);
 			} else {
-				positiveJokeProbability *= DEFAULT_PROBABILITY;
+				negativeJokeProbability *= DEFAULT_PROBABILITY;
 			}
 		}
 		return positiveJokeProbability - negativeJokeProbability;

@@ -22,7 +22,7 @@ public class ClassifierMain {
 				+ "маха отчаяно ръце.От кораба се отделя спасителна лодка с един моряк."
 				+ "- Капитанът ви изпраща новите вестници - казва морякът."
 				+ "- Моли ви да ги прочетете и да решите струва ли си да се връщате... ";
-		// TODO(yasen): convert the unclassified jokes to lowercase.
+		joke = Joke.preprocessJokeText(joke);
 		System.out.println(classifier.isJokeGood(joke));
 	}
 }
