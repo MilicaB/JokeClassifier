@@ -144,8 +144,8 @@ public class BaesyanUtil {
 				negativeJokeProbability += Math.log(defaultNegativeWordProbability);
 			}
 		}
-		System.out.println("+ " + positiveJokeProbability);
-		System.out.println("- " + negativeJokeProbability);
+		//System.out.println("+ " + positiveJokeProbability);
+		//System.out.println("- " + negativeJokeProbability);
 		return positiveJokeProbability - negativeJokeProbability;
 	}
 }

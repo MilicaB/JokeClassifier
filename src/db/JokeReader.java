@@ -15,7 +15,7 @@ import java.util.List;
 import com.jokes.classifier.common.Joke;
 
 public class JokeReader {
-	public static List<Joke> getJokes() {
+	public static List<Joke> getJokes(int idFrom, int idTo) {
 		List<Joke> jokes = new LinkedList<Joke>();
 		Connection connection = null;
 		Statement statement = null;
@@ -29,7 +29,8 @@ public class JokeReader {
 				e.printStackTrace();
 			}
 			statement = connection.createStatement();
-			ResultSet resultSet = statement.executeQuery("SELECT * FROM jokes;");
+			ResultSet resultSet = statement.executeQuery(
+					String.format(Constants.GET_JOKES_BETWEEN_IDS_QUERY, idFrom, idTo));
 
 			while (resultSet.next()) {
 				Joke currentJoke = new Joke();
@@ -46,5 +47,31 @@ public class JokeReader {
 		}
 
 		return jokes;
+	}
+
+	public static int getDatabaseSize() {
+		Connection connection = null;
+		Statement statement = null;
+
+		try {
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				connection = DriverManager.getConnection(JDBC_URL, USER, PASS);
+			} catch (ClassNotFoundException e) {
+				System.out.println("No JDBC driver found.");
+				e.printStackTrace();
+			}
+			statement = connection.createStatement();
+			ResultSet resultSet = statement.executeQuery(Constants.GET_DATABASE_SIZE_QUERY);
+			int size = 0;
+			if (resultSet.next()) {
+			    size = resultSet.getInt("cnt");
+			}
+			statement.close();
+			connection.close();
+			return size;
+		} catch (SQLException e) {
+		    throw new IllegalStateException("Cannot connect the database!", e);
+		}
 	}
 }

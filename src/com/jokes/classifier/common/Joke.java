@@ -17,7 +17,7 @@ public class Joke {
 	}
 
 	public void setJokeText(String joke) {
-		this.jokeText = joke;
+		this.jokeText = preprocessJokeText(joke);
 	}
 
 	public int getThumbsUp() {
@@ -42,7 +42,7 @@ public class Joke {
 	}
 
 	/**
-	 * Removes uppercase letters and an uneccessary preffix.
+	 * Removes upper case letters and an unnecessary prefix.
 	 * @param text The joke text.
 	 * @return The processed text of the joke.
 	 */

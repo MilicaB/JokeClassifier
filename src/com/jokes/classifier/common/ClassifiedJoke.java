@@ -11,7 +11,7 @@ public class ClassifiedJoke {
 
 	// As the data is from an online forum, around half of the jokes have
 	// rating thumbs_up - thumbs_down > 27. Take this into account as inflation.
-	private int RATING_INFLATION = 10;
+	public static final int RATING_INFLATION = 10;
 
 	public ClassifiedJoke(Joke joke, Vocabulary vocabulary) {
 		LinkedHashSet<String> words = vocabulary.getAlphabet();
